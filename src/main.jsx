@@ -4,11 +4,14 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import './assets/main.css'
 import Login from './pages/Login'
 import Signup from './pages/Signup'
+import AutoLogin from './components/AutoLogin'
+import store from './store/store'
+import { Provider } from 'react-redux'
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <div>HOLI</div>
+    element: <AutoLogin />
   },
   {
     path: 'login',
@@ -17,11 +20,17 @@ const router = createBrowserRouter([
   {
     path: 'signup',
     element: <Signup />
+  },
+  {
+    path: 'c',
+    element: <>This is the channel view</>
   }
 ])
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
   </React.StrictMode>,
 )

@@ -18,12 +18,12 @@ const Button = ({ cssClasses, onClick, color, disabled, loading, icon, text, out
     >
       {loading &&
         <span
-          class="spinner-border spinner-border-sm me-1"
+          className="spinner-border spinner-border-sm me-1"
           aria-hidden="true"
         ></span>
       }
       {icon &&
-        <svg href={icon} class="bi pe-none" width="16" height="16" />
+        <svg href={icon} className="bi pe-none" width="16" height="16" />
       }
       {text}
     </button>
