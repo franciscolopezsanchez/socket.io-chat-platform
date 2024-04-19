@@ -28,7 +28,7 @@ export const initStore = createAsyncThunk(
   async (_arg, thunkAPI) => {
     const dispatch = thunkAPI.dispatch;
 
-    socket.connect();
+    await socket.connect();
 
     const res = await socket.emitWithAck("channel:list", {
       size: 100,
@@ -42,13 +42,11 @@ export const initStore = createAsyncThunk(
   }
 );
 
-const unauthenticatedRoutes = ["login", "signup"];
 
 export const autoLogin = createAsyncThunk(
   'app/autoLogin',
   async (arg, thunkAPI) => {
     const dispatch = thunkAPI.dispatch;
-    const currentPath = arg.currentPath;
     const navigate = arg.navigate;
 
     const res = await BackendService.self();
@@ -59,20 +57,9 @@ export const autoLogin = createAsyncThunk(
 
       dispatch(initStore())
 
-
-      if (
-        unauthenticatedRoutes.includes(currentPath)
-      ) {
-        navigate('/c')
-      }
+      navigate('/c')
     } else {
-      if (!unauthenticatedRoutes.includes(currentPath)) {
-        const query = {};
-        if (currentPath !== "/") {
-          query.returnTo = currentPath;
-        }
-        navigate("/login", query)
-      }
+      navigate('/login')
     }
   }
 )

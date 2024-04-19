@@ -7,6 +7,7 @@ import Signup from './pages/Signup'
 import AutoLogin from './components/AutoLogin'
 import store from './store/store'
 import { Provider } from 'react-redux'
+import Channel from './pages/Channel'
 
 const router = createBrowserRouter([
   {
@@ -23,7 +24,7 @@ const router = createBrowserRouter([
   },
   {
     path: 'c',
-    element: <>This is the channel view</>
+    element: <Channel />
   }
 ])
 
